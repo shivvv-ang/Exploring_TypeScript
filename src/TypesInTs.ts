@@ -67,6 +67,8 @@ type Shape =
   | { kind: "Circle"; radius: number }
   | { kind: "square"; size: number };
 
+//never represents values that should never occur and is commonly used for exhaustive type checking and functions that don’t return.
+
 function area(shape: Shape) {
   switch (shape.kind) {
     case "Circle":
@@ -81,4 +83,25 @@ function area(shape: Shape) {
 }
 
 
-//never represents values that should never occur and is commonly used for exhaustive type checking and functions that don’t return.
+//optional values in type
+
+type superUser = {
+  userName:string,
+  iq:number;
+  bio?:string;
+}
+
+const u1:superUser = { userName:"something",iq:911}
+const u2: superUser = { userName: "whatever", iq: 911 ,bio:"ocassionally working brain"};
+
+
+// read only 
+
+type Config = {
+  readonly appName:string,
+  version:number
+}
+
+const cfg  : Config = {appName:"its time for africa",version:911}
+
+// cfg.appName = "yooo" can't reassign it since it is read only
